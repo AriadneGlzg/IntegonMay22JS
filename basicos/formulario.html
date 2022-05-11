@@ -1,0 +1,24 @@
+<!-- Hacer un formulario que pida nombre edad e ingreso y dato agregar un boton submit
+recuperar los datos en 3 variables
+y validar que edad tenga un dato de tipo numerico si no lo tiene solo mandar un alert
+Para el js si los datos son correctos crear un objeto llamado registro con los datos del formulario-->
+<html>
+    <head>
+        <title>
+            Formulario JavaScript♥
+        </title>       
+    </head>
+    <body>
+        <h1>Ingresa tus datos</h1>
+        <script src="js/formulario.js"></script> 
+        <form>
+            <label for="name">Nombre:</label><br>
+            <input type="text" id="nombre" name="name"><br>
+            <label for="edad">Edad:</label><br>
+            <input type="number" id="edad" name="age"><br>
+            <label for="ingreso">Ingreso:</label><br>
+            <input type="number" id="ingreso" name="ingreso"><br><br>
+            <input type ="button" value="Guardar Cambios" onClick="validacionFormulario()"/>
+        </form> 
+    </body>
+</html>

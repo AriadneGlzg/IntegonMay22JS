@@ -1,0 +1,54 @@
+<html>
+    <head>
+        <title>
+            Matematico JavaScript♥
+        </title>       
+    </head>
+    <body>
+        <h1>Realiza tu operacion matematica!</h1>
+        Numero A: <input type="text" id="num1"\>
+        Numero B: <input type="text" id="num2"\>
+        <input type ="button"  value ="Suma" onclick="ejecutaSuma()"/>              
+        <input type ="button"  value ="Resta" onclick="ejecutaResta()"/>
+        <input type ="button"  value ="Multiplicacion" onclick="ejecutaMultiplicacion()"/>
+        <input type ="button"  value ="Division" onclick="ejecutaDivision()"/>
+        <script src="matematico.js"></script> <!-- aqui es donde se invita al documento de java al html-->
+        <script>
+            function ejecutaSuma()
+            {
+                //javascript no es un lenguaje tipado
+                //var para definir una variable, no es una variable tipada, las variables son volubles
+                //la variable se comporta respecto a la ultima asignacion
+                var num1 = parseInt(document.getElementById("num1").value); //en este caso el document es este document este HTML
+                var num2 = parseInt(document.getElementById("num2").value); // el .value lo que le pide que te de el valor que se metio obvio te va a dar un string por eso el parse
+                var rsuma = sumar(num1,num2);
+                alert(rsuma)
+            }
+
+            function ejecutaResta()
+            {
+                //let para una variable, const para una constante
+                let num1 = parseInt(document.getElementById("num1").value);
+                let num2 = parseInt(document.getElementById("num2").value);
+                const resultado = restar(num1,num2);
+                alert(resultado)
+            }
+
+            function ejecutaMultiplicacion()
+            {
+                let num1 = parseInt(document.getElementById("num1").value);
+                let num2 = parseInt(document.getElementById("num2").value);
+                let resultado = multiplicar(num1,num2);
+                alert(resultado);
+            }
+
+            function ejecutaDivision()
+            {
+                let num1 = parseInt(document.getElementById("num1").value);
+                let num2 = parseInt(document.getElementById("num2").value);
+                let resultado = dividir(num1,num2);
+                alert(resultado);                 
+            }
+        </script> 
+    </body>
+</html>

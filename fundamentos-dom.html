@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <Title>Fundamentos DOM ♥</Title>
+    </head>
+    
+        <!--<h1>♥DOM♥</h1>-->
+        <div id="mensaje1" class="importante">Texto fijo1</div>
+        <div id="mensaje2">Texto fijo2♥</div>
+        <div id="mensaje3"class="importante">Texto fijo3</div>         
+        <ul id="frutas"><!--unordered list le pone los puntitos-->
+            <li>Manzana</li>
+            <li>Sandia</li>
+            <li>Pera</li>
+            <li>Guayaba</li>
+        </ul>
+        <ol><!--le pone numeritos al listarlos-->
+            <li>Spring</li>
+            <li>Summer</li>
+            <li>Autumn</li>
+            <li>Winter</li>
+        </ol>
+        <input type="button" value="+Fruta"onclick="agregarfrutas()"></input>
+
+        <script>
+            console.log(`${document.title} se imprimio en la consola`);
+            console.log(document.doctype);
+            console.log(document.lastModified);
+            let divmensaje = document.getElementById("mensaje1");
+            if(divmensaje)
+                alert(divmensaje.innerText);
+                divmensaje.innerText+="mensaje modificado con javascript♥";
+            let losDivs = document.getElementsByTagName("div"); //ahi lo que se guarda es un arreglo con la referencia de los elementos en este caso son los divs
+            console.log(`Hay ${losDivs.length} en el documentito`);
+            let divsImportante = document.getElementsByClassName("importante");
+            if(losDivs.length>0)
+                losDivs[0].innerText="Este es el primer div que hay en el documento ♥";
+               
+            if(divsImportante.length>0)       
+            console.log(`Hay ${divsImportante.length} en el documentito`);
+            
+           function agregarfrutas(){
+                let frutas = document.getElementById("frutas");
+                frutas.innerHTML+="<li>Otra frutita ♥</li>"; 
+                let nuevafruta = document.createElement("li");
+                nuevafruta.innerText="Duraznito";
+                frutas.appendChild(nuevafruta);
+           frutas.childNodes.forEach(item=>{
+                console.log(item.innerText);
+           });
+            }
+            
+        </script>
+    </body>
+</html>
