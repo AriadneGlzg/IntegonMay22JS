@@ -19,3 +19,4 @@ function generateUI(){
 function clickGeneral(){
     alert("click general");
 }
+

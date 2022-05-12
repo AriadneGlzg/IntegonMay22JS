@@ -1,28 +1,30 @@
 function agregarAutor(){
     console.log("Funciono♥");
+    let nuevoautor = new Autor("Ariadne", "https://64.media.tumblr.com/b98d05defeb5b3617cd2311b113dbdf5/ab31b648c4bf4b63-43/s1280x1920/cc6d31dba2e33660b7d9a8ee087fd68aef7f2276.pnj", "ariadne@gmail.com", "Student", "Developer", "OFFLINE", "04/04/2022");
     let tabla = document.getElementById("tablaautores");
     let fila = document.createElement("tr");
+    tabla.style.display="inline";
     fila.innerHTML=`
     <td>
         <div class="d-flex px-2 py-1">
             <div>
-            <img src="https://64.media.tumblr.com/b98d05defeb5b3617cd2311b113dbdf5/ab31b648c4bf4b63-43/s1280x1920/cc6d31dba2e33660b7d9a8ee087fd68aef7f2276.pnj" class="avatar avatar-sm me-3" alt="user7">
+            <img src="${nuevoautor.imagen}" class="avatar avatar-sm me-3" alt="user7">
             </div>
             <div class="d-flex flex-column justify-content-center">
             <h6 class="mb-0 text-sm">Mi nuevo autor ♥</h6>
-            <p class="text-xs text-secondary mb-0">nuevo.autor@ngic.com</p>
+            <p class="text-xs text-secondary mb-0">${nuevoautor.correo}</p>
             </div>
         </div>
         </td>
         <td>
-        <p class="text-xs font-weight-bold mb-0">Student</p>
-        <p class="text-xs text-secondary mb-0">Organization</p>
+        <p class="text-xs font-weight-bold mb-0">${nuevoautor.funcion}</p>
+        <p class="text-xs text-secondary mb-0">${nuevoautor.descripcion}</p>
         </td>
         <td class="align-middle text-center text-sm">
-        <span class="badge badge-sm bg-gradient-success">Onffline</span>
+        <span class="badge badge-sm bg-gradient-success">${nuevoautor.status}</span>
         </td>
         <td class="align-middle text-center">
-        <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
+        <span class="text-secondary text-xs font-weight-bold">${nuevoautor.fechaingreso}</span>
         </td>
         <td class="align-middle">
         <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
@@ -31,6 +33,113 @@ function agregarAutor(){
     </td>
     `;
     tabla.appendChild(fila);
+}
+function agregarAutor3(){
+        
+    $.ajax({ //es la configuracion de una llamada usando ujquery
+        method: 'GET', //post put delete etc
+        dataType: 'json', // vas a intercambiar con formato json
+        url: 'http://localhost:3005/autores',
+        //data: {}, //eso es el id de la cosa del registro que quiere consultar
+        success: function (data) {
+            const autores=data.autores;
+            let tabla = document.getElementById("tablaautores");
+            autores.forEach(function(a){
+                let fila = document.createElement("tr"); 
+                if(a.status.toLocaleLowerCase() == "online"){
+                    fila.innerHTML=`
+                    <td>
+                        <div class="d-flex px-2 py-1">
+                            <div>
+                            <img src="${a.imagen}" class="avatar avatar-sm me-3" alt="user7">
+                            </div>
+                            <div class="d-flex flex-column justify-content-center">
+                            <h6 class="mb-0 text-sm">${a.nombre} ♥</h6>
+                            <p class="text-xs text-secondary mb-0">${a.correo}</p>
+                            </div>
+                        </div>
+                        </td>
+                        <td>
+                        <p class="text-xs font-weight-bold mb-0">${a.funcion}</p>
+                        <p class="text-xs text-secondary mb-0">${a.descripcion}</p>
+                        </td>
+                        <td class="align-middle text-center text-sm">
+                        <span class="badge badge-sm bg-gradient-success">${a.status}</span>
+                        </td>
+                        <td class="align-middle text-center">
+                        <span class="text-secondary text-xs font-weight-bold">${a.fechaingreso}</span>
+                        </td>
+                        <td class="align-middle">
+                        <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                            Edit
+                        </a>
+                    </td>                
+                    `;
+                }
+                else{
+                    fila.innerHTML=`
+                    <td>
+                        <div class="d-flex px-2 py-1">
+                            <div>
+                            <img src="${a.imagen}" class="avatar avatar-sm me-3" alt="user7">
+                            </div>
+                            <div class="d-flex flex-column justify-content-center">
+                            <h6 class="mb-0 text-sm">${a.nombre} ♥</h6>
+                            <p class="text-xs text-secondary mb-0">${a.correo}</p>
+                            </div>
+                        </div>
+                        </td>
+                        <td>
+                        <p class="text-xs font-weight-bold mb-0">${a.funcion}</p>
+                        <p class="text-xs text-secondary mb-0">${a.descripcion}</p>
+                        </td>
+                        <td class="align-middle text-center text-sm">
+                        <span class="badge badge-sm bg-gradient-secondary">${a.status}</span>
+                        </td>
+                        <td class="align-middle text-center">
+                        <span class="text-secondary text-xs font-weight-bold">${a.fechaingreso}</span>
+                        </td>
+                        <td class="align-middle">
+                        <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
+                            Edit
+                        </a>
+                    </td>                
+                    `;
+                }
+                tabla.appendChild(fila);
+                console.log(a);
+            });                
+        }
+    });
+    
+}
+
+function agregarAutor4(){
+    document.getElementById("formAutor").style.display = "inline"
+    $.ajax({ //es la configuracion de una llamada usando ujquery
+        method: 'POST', //post put delete etc
+        dataType: 'json', // vas a intercambiar con formato json
+        contentType : 'application/json',
+        url: 'http://localhost:3005/autores',
+        //data: {}, //eso es el id de la cosa del registro que quiere consultar 
+
+        data:JSON.stringify({
+            "nombre": $("#Nombre").val(),
+            "imagen": $("#Imagen").val(),
+            "correo": $("#Correo").val(),
+            "funcion": $("#Funcion").val(),
+            "descripcion": $("#Descripcion").val(),
+            "status": $("#Status").val(),
+            "fechaingreso": $("#Fecha").val()                     
+        }),
+        success: function (data) {
+            var url ="http://127.0.0.1:5500/basicos/dashboard/soft-ui-dashboard-main/pages/tables.html";
+            $(location).attr('href',url);
+
+           
+        }
+    });
+    
 }
 
 function agregarAutor2(){

@@ -18,12 +18,20 @@ function imprimeAnimal(animal){
     }
     catch{
         console.log(`Se recibio un objeto del tipo ${typeof animal} y se espera uno de tipo ANIMAL`);
+    }    
+}
+
+class Mamifero extends Animal{
+    constructor(nombre, tipo, especial){
+        super(nombre, tipo);
+        this.especial = especial;
     }
-    
-    
+
 }
 //se esta instanciando la clase animal y se crea por ende un objeto de tipo animal el objeto es animal1
 let animal1= new Animal("foca","mamifero"); 
 let animal2= new Animal("abeja","insecto"); 
+let mamifero1= new Animal("vaca","mamifero"); 
 console.log (animal1.consultaDetalles());
-imprimeAnimal(100);
+consolel.los(`${mamifero1.nombre}`);
+imprimeAnimal(mamifero1);

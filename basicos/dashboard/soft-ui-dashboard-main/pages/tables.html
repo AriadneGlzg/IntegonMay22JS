@@ -35,7 +35,7 @@
   <link id="pagestyle" href="../assets/css/soft-ui-dashboard.css?v=1.0.5" rel="stylesheet" />
 </head>
 
-<body class="g-sidenav-show  bg-gray-100">
+<body class="g-sidenav-show  bg-gray-100" onload = "agregarAutor3()">
   <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 border-radius-xl my-3 fixed-start ms-3 " id="sidenav-main">
     <div class="sidenav-header">
       <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none" aria-hidden="true" id="iconSidenav"></i>
@@ -363,9 +363,41 @@
             </div>
             <div>
               <li class="nav-item d-flex align-items-center">
-                <input type="button" value="ADD AUTHOR ♥"class="btn btn-outline-primary btn-sm mb-0 me-3" onClick="agregarAutor()">ADD AUTHOR</input>
+                <input type="button" value="ADD AUTHOR ♥"class="btn btn-outline-primary btn-sm mb-0 me-3" onClick="agregarAutor4()">ADD AUTHOR</input>
               </li>
             </div>
+            <!--FORMULARIO-->
+            <div class= "card-body px-0 pt-0 pb-2"id="formAutor" style="display:none">
+              <div class="card-body">
+                <form role="form text-left">
+                  <div class="mb-3">
+                    <input id="Nombre" type="text" class="form-control" placeholder="Nombre" aria-label="Name" aria-describedby="email-addon">
+                  </div>
+                  <div class="mb-3">
+                    <input id="Correo" type="text" class="form-control" placeholder="Correo" aria-label="Name" aria-describedby="email-addon">
+                  </div>
+                  <div class="mb-3">
+                    <input id="Funcion" type="text" class="form-control" placeholder="Funcion" aria-label="Name" aria-describedby="email-addon">
+                  </div>                  
+                  <div class="mb-3">
+                    <input id="Descripcion" type="text" class="form-control" placeholder="Descripcion" aria-label="Name" aria-describedby="email-addon">
+                  </div>             
+                  <div class="mb-3">
+                    <input id="Status" type="text" class="form-control" placeholder="Status" aria-label="Name" aria-describedby="email-addon">
+                  </div>         
+                  <div class="mb-3">
+                    <input id="Fecha" type="text" class="form-control" placeholder="Fecha de Ingreso" aria-label="Name" aria-describedby="email-addon">
+                  </div>                                                  
+                  <div class="mb-3">
+                    <input id="Imagen" type="text" class="form-control" placeholder="Imagen URL" aria-label="Name" aria-describedby="email-addon">
+                  </div>                  
+                  <div class="text-center">
+                    <button type="button" class="btn bg-gradient-dark w-100 my-4 mb-2">Agregar autor</button>
+                  </div>                  
+                </form>
+              </div>
+            </div>
+            <!--FIN DEL FORMULARIO AGREGADO-->
             <div class="card-body px-0 pt-0 pb-2">
               <div class="table-responsive p-0">
                 <table class="table align-items-center mb-0" id="tablaautores">
@@ -379,6 +411,8 @@
                     </tr>
                   </thead>
                   <tbody>
+                  </tbody>
+                  <tbody id ="elbody" hidden>
                     <tr>
                       <td>
                         <div class="d-flex px-2 py-1">
@@ -464,6 +498,7 @@
                         </a>
                       </td>
                     </tr>
+
                     <tr>
                       <td>
                         <div class="d-flex px-2 py-1">
@@ -912,7 +947,10 @@
   <script src="../assets/js/core/bootstrap.min.js"></script>
   <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
   <script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
-  <!--<script src="/basicos/js/agregarautor.js"></script>-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="/tsdemo/Autor.js"></script>
+  <script src="/basicos/js/agregarautor.js"></script>
+  <!--<script src="/basicos/js/agregarautor.js"></scrip>-->
 
   <script>
     var win = navigator.platform.indexOf('Win') > -1;
@@ -928,84 +966,6 @@
   <!-- Control Center for Soft Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="../assets/js/soft-ui-dashboard.min.js?v=1.0.5"></script>
 
-  <script>
-    function agregarAutor2(){
-
-      console.log("Funciono♥");
-      let tabla = document.getElementById("tablaautores");
-      let autor= tabla.insertRow(-1);
-      let nombreAutor = autor.insertCell(0);
-      nombreAutor.innerHTML=`
-      <div class="d-flex px-2 py-1">
-      <div>
-          <img src="https://64.media.tumblr.com/b98d05defeb5b3617cd2311b113dbdf5/ab31b648c4bf4b63-43/s1280x1920/cc6d31dba2e33660b7d9a8ee087fd68aef7f2276.pnj" class="avatar avatar-sm me-3" alt="user1">
-      </div>
-      <div class="d-flex flex-column justify-content-center">
-          <h6 class="mb-0 text-sm">Nuevo autor</h6>
-          <p class="text-xs text-secondary mb-0">nuevoautor@gmail.com</p>
-      </div>
-      </div>
-      `;
-      let autorFunction = autor.insertCell(1);
-      autorFunction.innerHTML= `
-      <p class="text-xs font-weight-bold mb-0">Student</p>
-      <p class="text-xs text-secondary mb-0">Organization</p>
-      `;
-      let autorStatus = autor.insertCell(2);
-      autorStatus.innerHTML= `
-      <span class="badge badge-sm bg-gradient-success">Online</span>
-      `;
-      let autorEmployed = autor.insertCell(3);
-      autorEmployed.innerHTML= `
-      <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
-      `;
-      let autorEdit = autor.insertCell(4);
-      autorEdit.innerHTML= `
-      <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-          Edit
-      </a> 
-      `;
-    }     
-  </Script>
-
-  <Script>
-    function agregarAutor(){
-    console.log("Funciono♥");
-    let tabla = document.getElementById("tablaautores");
-    let fila = document.createElement("tr");
-    fila.innerHTML=`
-    <td>
-        <div class="d-flex px-2 py-1">
-            <div>
-            <img src="https://64.media.tumblr.com/b98d05defeb5b3617cd2311b113dbdf5/ab31b648c4bf4b63-43/s1280x1920/cc6d31dba2e33660b7d9a8ee087fd68aef7f2276.pnj" class="avatar avatar-sm me-3" alt="user7">
-            </div>
-            <div class="d-flex flex-column justify-content-center">
-            <h6 class="mb-0 text-sm">Mi nuevo autor ♥</h6>
-            <p class="text-xs text-secondary mb-0">nuevo.autor@ngic.com</p>
-            </div>
-        </div>
-        </td>
-        <td>
-        <p class="text-xs font-weight-bold mb-0">Student</p>
-        <p class="text-xs text-secondary mb-0">Organization</p>
-        </td>
-        <td class="align-middle text-center text-sm">
-        <span class="badge badge-sm bg-gradient-success">Onffline</span>
-        </td>
-        <td class="align-middle text-center">
-        <span class="text-secondary text-xs font-weight-bold">23/04/18</span>
-        </td>
-        <td class="align-middle">
-        <a href="javascript:;" class="text-secondary font-weight-bold text-xs" data-toggle="tooltip" data-original-title="Edit user">
-            Edit
-        </a>
-    </td>
-    `;
-    tabla.appendChild(fila);
-  }
-</Script>
-
-  
 </body>
 
 </html>

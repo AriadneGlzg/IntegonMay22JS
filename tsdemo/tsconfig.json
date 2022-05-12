@@ -1,0 +1,10 @@
+{
+    "compilerOptions": {
+      "target": "ES6", //AQUI SE CAMBIA EN STANDAR
+      "module": "commonjs",
+      "noImplicitAny": true,
+      "removeComments": true,
+      "preserveConstEnums": true,
+      "sourceMap": true
+    },    
+  }
