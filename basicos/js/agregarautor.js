@@ -134,9 +134,7 @@ function agregarAutor4(){
         }),
         success: function (data) {
             var url ="http://127.0.0.1:5500/basicos/dashboard/soft-ui-dashboard-main/pages/tables.html";
-            $(location).attr('href',url);
-
-           
+            $(location).attr('href',url);           
         }
     });
     
