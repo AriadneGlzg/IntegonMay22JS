@@ -106,38 +106,107 @@ function agregarAutor3(){
                     </td>                
                     `;
                 }
-                tabla.appendChild(fila);
-                console.log(a);
+                tabla.appendChild(fila);                
             });                
         }
     });
     
 }
-
+let aparece = true;
 function agregarAutor4(){
-    document.getElementById("formAutor").style.display = "inline"
-    $.ajax({ //es la configuracion de una llamada usando ujquery
-        method: 'POST', //post put delete etc
-        dataType: 'json', // vas a intercambiar con formato json
-        contentType : 'application/json',
-        url: 'http://localhost:3005/autores',
-        //data: {}, //eso es el id de la cosa del registro que quiere consultar 
+    console.log(aparece);
+    if(aparece){
+        document.getElementById("formAutor").style.display = "inline";
+        aparece= !aparece;
+    }
+    else{
+        document.getElementById("formAutor").style.display = "none";
+        aparece= !aparece;
+    }    
+}
 
-        data:JSON.stringify({
-            "nombre": $("#Nombre").val(),
-            "imagen": $("#Imagen").val(),
-            "correo": $("#Correo").val(),
-            "funcion": $("#Funcion").val(),
-            "descripcion": $("#Descripcion").val(),
-            "status": $("#Status").val(),
-            "fechaingreso": $("#Fecha").val()                     
-        }),
-        success: function (data) {
-            var url ="http://127.0.0.1:5500/basicos/dashboard/soft-ui-dashboard-main/pages/tables.html";
-            $(location).attr('href',url);           
-        }
-    });
-    
+function agregarAJAX(){
+    console.log("entre al AJAX bish ♥");
+    let validados =false;
+    let nombre = document.getElementById("Nombre");
+    let correo = document.getElementById("Correo");
+    let funcion = document.getElementById("Funcion");
+    let descripcion = document.getElementById("Descripcion");
+    let fecha = document.getElementById("Fecha");
+    let status = document.getElementById("Status");
+
+    if(nombre.value === "")
+    {
+        alert("Debes ingresar tu nombre");
+        nombre.focus();
+    }
+    else
+    {
+        if(correo.value ===""){
+            correo.focus();
+            alert("Ingresa un correo electronico");
+            
+           }
+           else{
+               if(!correo.value.includes("@")){
+                   correo.focus();
+                   alert(`Debes incluir el signo "@" en el email`); 
+               }
+               else
+               {
+                    if(funcion.value === ""){
+                        funcion.focus();
+                        alert("Falta ingresar el campo \"Funcion\"");
+                    }
+                    else{
+                        if(descripcion.value === ""){
+                            descripcion.focus();
+                            alert("Falta ingresar el campo \"Descripcion\"");
+                        }
+                        else{
+                            if(fecha.value === ""){
+                                fecha.focus();
+                                alert("Falta ingresar el campo \"Fecha de Ingreso\"");
+                            }
+                            else{
+                                if(status.value.toLowerCase() === "online" || status.value.toLowerCase() === "offline"  ){
+                                    validados = true;
+                                }
+                                else{
+                                    status.focus();
+                                    alert(`"${status.value}" no es un Status valido`);
+                                                                   
+                                }
+                            }
+                        }
+                    }
+               }            
+           }
+    }
+
+    if(validados)
+    {
+        $.ajax({ //es la configuracion de una llamada usando ujquery
+            method: 'POST', //post put delete etc
+            dataType: 'json', // vas a intercambiar con formato json
+            contentType : 'application/json',
+            url: 'http://localhost:3005/autores',
+            //data: {}, //eso es el id de la cosa del registro que quiere consultar 
+            data:JSON.stringify({
+                "nombre": $("#Nombre").val(),
+                "imagen": $("#Imagen").val(),
+                "correo": $("#Correo").val(),
+                "funcion": $("#Funcion").val(),
+                "descripcion": $("#Descripcion").val(),
+                "status": $("#Status").val(),
+                "fechaingreso": $("#Fecha").val()                     
+            }),
+            success: function (data) {
+                var url ="http://127.0.0.1:5500/dashboard/soft-ui-dashboard-main/pages/tables.html";
+                $(location).attr('href',url);           
+            }
+        });
+    }    
 }
 
 function agregarAutor2(){
