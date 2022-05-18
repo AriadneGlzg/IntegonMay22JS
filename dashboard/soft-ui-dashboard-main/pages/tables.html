@@ -361,10 +361,12 @@
             <div class="card-header pb-0">
               <h6>Authors table</h6>
             </div>
-            <div>
-              <li class="nav-item d-flex align-items-center">
-                <input type="button" value="ADD AUTHOR ♥"class="btn btn-outline-primary btn-sm mb-0 me-3" onClick="agregarAutor4()">ADD AUTHOR</input>
-              </li>
+            <div id="divBotones">                                             
+                <input type="button" value="+ADD AUTHOR" class="btn btn-outline-primary btn-sm mb-0 me-3"id="agregar"></input> <!--aqui habia un onClick="agregarAutor4()"-->
+                <input type="button" value="Performer" class="btn btn-outline-primary btn-sm mb-0 me-3" id="performer"></input>
+                <input type="button" value="Programator" class="btn btn-outline-primary btn-sm mb-0 me-3" id="programator"></input>
+                <input type="button" value="Manager" class="btn btn-outline-primary btn-sm mb-0 me-3" id="manager"></input>    
+                <input type="button" value="ALL" class="btn btn-outline-primary btn-sm mb-0 me-3" id="all"></input>          
             </div>
             <!--FORMULARIO-->
             <div class= "card-body px-0 pt-0 pb-2"id="formAutor" style="display:none">
@@ -410,9 +412,8 @@
                       <th class="text-secondary opacity-7"></th>
                     </tr>
                   </thead>
-                  <tbody>
-                  </tbody>
-                  <tbody id ="elbody" hidden>
+
+                  <tbody id ="elbody">
                     <tr>
                       <td>
                         <div class="d-flex px-2 py-1">
@@ -949,8 +950,8 @@
   <script src="../assets/js/plugins/smooth-scrollbar.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="/tsdemo/Autor.js"></script>
-  <script src="/basicos/js/agregar-autor.js"></script>
-  <!--<script src="/basicos/js/agregarautor.js"></scrip>-->
+  <script src="../assets/js/agregar-autor.js"></script>
+  <script src="../assets/js/filtrar-autores.js"></script>
 
   <script>
     var win = navigator.platform.indexOf('Win') > -1;

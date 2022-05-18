@@ -100,13 +100,15 @@
         <div class="container">
           <div class="row">
             <div class="col-xl-4 col-lg-5 col-md-6 d-flex flex-column mx-auto">
+              <!--card que yo agregue-->
               <div class="card card-plain mt-8" id="miCard" hidden>
                 <div class="card-header pb-0 text-left bg-transparent">
-                  <h2 class="font-weight-bolder text-info text-gradient">Bienvenido</h2>
-                  <p class="mb-lg-0" id="mensajito"></p>
+                  <h2 class="font-weight-bolder text-info text-gradient" id="micardh2"></h2>
+                  <p class="mb-lg-0" id="micardp"></p>
                 </div>
                 <img class="card-img-bottom"  src="https://64.media.tumblr.com/b98d05defeb5b3617cd2311b113dbdf5/ab31b648c4bf4b63-43/s1280x1920/cc6d31dba2e33660b7d9a8ee087fd68aef7f2276.pnj" alt="Card image cap">
               </div>
+              <!--fin/ INICIO CARD SING-IN-->
               <div class="card card-plain mt-8" id="singInDiv">
                 <div class="card-header pb-0 text-left bg-transparent">
                   <h3 class="font-weight-bolder text-info text-gradient">Welcome back</h3>
@@ -116,13 +118,13 @@
                   <form role="form">
                     <label>Email</label>
                     <div class="mb-3">
-                      <input type="email" id="idemail" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="email-addon">
+                      <input type="email" id="idemail" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="email-addon" required>
                     </div>
                     <label>Password</label>
                     <div class="mb-3">
-                      <input type="email" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="password-addon" id="idcontrasena">
+                      <input type="email" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="password-addon" id="idcontrasena" required>
                     </div>
-                    <div id="nUser" hidden>
+                    <div id="nUser">
                       <p class="text-danger">
                         <small>El email o la contraseña son incorrectos</small>                        
                       </p>
@@ -209,6 +211,7 @@
   </footer>
   <!-- -------- END FOOTER 3 w/ COMPANY DESCRIPTION WITH LINKS & SOCIAL ICONS & COPYRIGHT ------- -->
   <!--   Core JS Files   -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   <script src="../assets/js/core/popper.min.js"></script>
   <script src="../assets/js/core/bootstrap.min.js"></script>
   <script src="../assets/js/plugins/perfect-scrollbar.min.js"></script>
