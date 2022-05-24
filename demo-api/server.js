@@ -17,7 +17,7 @@ const url = "mongodb://localhost:27017"; //ruta de la db
 
 
 
-let db,dbangular,alumnos,autores,registros,aloha,vuelos;
+let db,dbangular,alumnos,autores,registros,aloha,vuelos,dbadminpro,users;
 mongo.connect(url,{
     useNewUrlParser:true,
     useUnifiedTopology:true
@@ -29,12 +29,14 @@ mongo.connect(url,{
     }
     db=client.db("cursojavascript");
     dbangular=client.db("angulardb");
+    dbadminpro=client.db("adminpro");
     console.log("Conectado a la DB♥");
     alumnos = db.collection("alumnos");
     autores = db.collection("Autores");
     registros = db.collection("Registro");
     aloha = dbangular.collection("personas");
     vuelos = dbangular.collection("vuelos");
+    users = dbadminpro.collection("users");
 });
 
 app.get("/demo", (request,response) =>{
@@ -194,5 +196,37 @@ app.post("/vuelos", (request,response) =>{
     )   
 });
 
+app.get("/usuarios", (request,response) =>{
+    console.log("♥ Se ejecuto la ruta usuarios para adminpro...");               
+    users.find().toArray((err,items) => { 
+        if(err){
+            console.log(err);
+            response.status(500).json({err:err});
+            return;
+        }
+        //si no hay algun error
+        response.status(200).json({usuarios:items}); //aqui si no quieres que el paquete tenga nombre, solo se pone el items
+        //tambien aqui lo estoy poniendo asi por el ejemplo en angular para que jale solo con data
+        //({items}) si lo pones asi con las llaves va a tener nombre el nombre seria el nombre de la variable osea "items"            
+    });
+});
+
+app.post("/usuarios", (request,response) =>{
+    users.insertOne(
+        {
+            nombre: request.body.nombre, 
+            email: request.body.pmail, 
+            password: request.body.password,
+        }, 
+        (err,result) => {
+            if(err){
+                console.log(err);
+                response.status(500).json({err:err});
+                return;
+            }
+            response.status(200).json({ok:true});        
+        }
+    )   
+});
 
 
